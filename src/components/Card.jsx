@@ -23,7 +23,7 @@ const Card = ({ id, img, isFlipped }) => {
           transform ${isFlipped ? "rotate-y-180" : ""}`}
       >
         <img
-          src={`src/assets/cards imgs/${
+          src={`assets/cards imgs/${
             isJokerCards
               ? "joker/joker-back-side.png"
               : "pokemon/Pokemon_Pokeball.png"

@@ -33,7 +33,7 @@ function MemoryGameProvider({ children }) {
       length: numCards / 2,
     },
     (_, i) =>
-      `src/assets/cards imgs/${
+      `assets/cards imgs/${
         selectedOptions.theme === "pokemon Cards" ? "pokemon" : "joker"
       }/card${i + 1}.${
         selectedOptions.theme === "pokemon Cards" ? "png" : "jpeg"
