@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import bgJokerCards from "../assets/bgJokerCards.jpg";
+import bgPokemonCards from "../assets/bgPokemonCards.jpg";
 
 const ImageSwitcher = () => {
   const [currentImage, setCurrentImage] = useState("joker");
@@ -16,10 +18,11 @@ const ImageSwitcher = () => {
     return () => clearInterval(timer);
   }, []);
 
-  const imageSrc =
-    currentImage === "joker"
-      ? "src/assets/bgJokerCards.jpg"
-      : "src/assets/bgPokemonCards.jpg";
+  const imageSrc = currentImage === "joker" ? bgJokerCards : bgPokemonCards;
+  // const imageSrc =
+  //   currentImage === "joker"
+  //     ? "src/assets/bgJokerCards.jpg"
+  //     : "src/assets/bgPokemonCards.jpg";
 
   const altText =
     currentImage === "joker"
