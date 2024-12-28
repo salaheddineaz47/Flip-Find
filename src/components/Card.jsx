@@ -1,4 +1,6 @@
 import { useMemoryGame } from "./MemoryGameProvider";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 const Card = ({ id, img, isFlipped }) => {
   const { onCardClick } = useMemoryGame();
@@ -22,7 +24,7 @@ const Card = ({ id, img, isFlipped }) => {
           ${isFlipped ? "opacity-0 z-0" : "opacity-100 z-10"}
           transform ${isFlipped ? "rotate-y-180" : ""}`}
       >
-        <img
+        <LazyLoadImage
           src={`assets/cards imgs/${
             isJokerCards
               ? "joker/joker-back-side.png"
@@ -30,6 +32,7 @@ const Card = ({ id, img, isFlipped }) => {
           }`}
           alt={isJokerCards ? "joker card back side" : "Pokemon Pokeball"}
           className={`w-full h-full ${isJokerCards ? "" : "scale-75"}`}
+          effect="blur"
         />
       </div>
 
@@ -40,11 +43,12 @@ const Card = ({ id, img, isFlipped }) => {
           ${isFlipped ? "opacity-100 z-10" : "opacity-0 z-0"}
           transform ${isFlipped ? "rotate-y-0" : "rotate-y-180"}`}
       >
-        <img
+        <LazyLoadImage
           src={img}
           className={`max-w-full max-h-full ${
             isJokerCards ? "scale-x-125" : ""
           }`}
+          effect="blur"
         />
       </div>
     </div>
