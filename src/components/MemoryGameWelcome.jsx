@@ -4,36 +4,48 @@ import Logo from "./Logo";
 import ImageSwitcher from "./ImageSwitcher";
 import { toast, Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useMemoryGame } from "./MemoryGameProvider";
 
 function MemoryGameWelcome() {
-  useEffect(function () {
-    toast(
-      <>
-        - Flip the cards to reveal their hidden sides.
-        <br />
-        - Find matching pairs to score!
-        <br />- The <strong>timer</strong> starts as soon as you begin.
-        <br /> - Every 2 cards flipped count as a <strong>move</strong>.
-        <br />
-        - Win by matching all the cards.
-        <br />
-        <div className="text-center mt-2">
-          <strong>Good luck! 🚀🎉</strong>
-        </div>
-      </>,
-      {
-        position: "top-center",
-        autoClose: false,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-        transition: Bounce,
-      }
-    );
-  }, []);
+  const { hasToastShown } = useMemoryGame();
+
+  useEffect(
+    function () {
+      if (hasToastShown.current) return;
+      toast(
+        <>
+          - Flip the cards to reveal their hidden sides.
+          <br />
+          - Find matching pairs to score!
+          <br />- The <strong>timer</strong> starts as soon as you begin.
+          <br /> - Every 2 cards flipped count as a <strong>move</strong>.
+          <br />
+          - Win by matching all the cards.
+          <br />
+          <div className="text-center mt-2">
+            <strong>Good luck! 🚀🎉</strong>
+          </div>
+        </>,
+        {
+          position: "top-center",
+          autoClose: 10000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce,
+        }
+      );
+      const timeoutId = setTimeout(() => {
+        hasToastShown.current = true;
+      }, 100);
+
+      return () => clearTimeout(timeoutId);
+    },
+    [hasToastShown]
+  );
   return (
     <section className="relative overflow-hidden bg-gray-50 sm:grid sm:grid-cols-2 sm:items-center min-h-screen w-full ">
       <div className="p-8 md:p-12 lg:px-16 lg:py-24">

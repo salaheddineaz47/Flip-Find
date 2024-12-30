@@ -21,6 +21,7 @@ function MemoryGameProvider({ children }) {
   const [movesResult, setMovesResult] = useState(0);
   const [selectedOptions, setSelectedOptions] = useState({});
   const timerRef = useRef(null);
+  const hasToastShown = useRef(false);
 
   const isGamerWinner = cards.length > 0 && matches === cards.length / 2;
   const gridSize = selectedOptions.gridSize || [0, 0];
@@ -220,6 +221,7 @@ function MemoryGameProvider({ children }) {
         onCardClick: flipCard,
         onRestartGame: resetGame,
         onNewGame: handleNewGame,
+        hasToastShown,
       }}
     >
       {children}

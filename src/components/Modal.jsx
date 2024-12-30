@@ -5,21 +5,19 @@ import Timer from "./Timer";
 import Confetti from "react-confetti";
 
 const getResultMessage = (theme, isSmallGrid, time, moves) => {
+  const themePrefix = theme === "joker" ? "Joker" : "Pokemon";
+
   if (isSmallGrid) {
     if (time < 60 && moves <= 20) {
-      return theme === "joker"
-        ? "🎭 Quick Match! You mastered the Jokers in no time!"
-        : "🔥 Great Job! You caught all the Pokemon fast! ⚡";
+      return `🎭 Quick Match! You mastered the ${themePrefix}s in no time!`;
     } else {
-      return "🌟 Good Work! You completed the small grid. Keep practicing! 🕰️";
+      return `🌟 Good Work! You completed the small grid with the ${themePrefix}s. Keep practicing! 🕰️`;
     }
   } else {
     if (time < 180 && moves <= 50) {
-      return theme === "joker"
-        ? "🃏 Well Done! You aced the big Joker grid! 🎉"
-        : "🐉 Awesome! You caught 'em all on the big grid! 🏆";
+      return `🃏 Well Done! You aced the big ${themePrefix} grid! 🎉`;
     } else {
-      return "🕵️ Nice Try! You completed the big grid. Keep it up! 🕰️";
+      return `🕵️ Nice Try! You completed the big ${themePrefix} grid. Keep it up! 🕰️`;
     }
   }
 };

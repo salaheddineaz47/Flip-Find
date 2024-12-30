@@ -8,9 +8,9 @@ const PlayGround = () => {
   const isBigGrid = gridSize[0] === 6;
 
   return (
-    <div className="relative flex flex-col sm:flex-row sm:gap-4  justify-between   items-center mb-6 w-full h-[80vh]">
+    <div className="relative flex flex-col sm:flex-row sm:gap-4  gap-10 items-center  w-full sm:h-[85vh] h-[80vh]">
       <div
-        className="responsive-grid "
+        className="responsive-grid mb-0 sm:mb-0"
         style={{
           "--grid-cols": gridSize[0],
           "--grid-rows": gridSize[1],
