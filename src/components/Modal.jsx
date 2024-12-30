@@ -3,6 +3,7 @@ import { useMemoryGame } from "./MemoryGameProvider";
 import Moves from "./Moves";
 import Timer from "./Timer";
 import Confetti from "react-confetti";
+import { useWindowSize } from "react-use";
 
 const getResultMessage = (theme, isSmallGrid, time, moves) => {
   const themePrefix = theme === "joker" ? "Joker" : "Pokemon";
@@ -23,6 +24,7 @@ const getResultMessage = (theme, isSmallGrid, time, moves) => {
 };
 
 const Modal = () => {
+  const { width, height } = useWindowSize();
   const {
     timeElapsed,
     movesResult,
@@ -41,8 +43,14 @@ const Modal = () => {
 
   return (
     <>
-      {timeElapsed < 60 && <Confetti />}
-      <div className="fixed inset-0 bg-black/50 z-40"></div>
+      {timeElapsed < 60 && (
+        <Confetti
+          width={width}
+          height={height}
+          style={{ position: "absolute", zIndex: 40 }}
+        />
+      )}
+      <div className="fixed inset-0 bg-black/50 z-50"></div>
       <div className="fixed left-0 top-0 flex h-full min-h-screen w-full items-center justify-center bg-dark/90 z-50">
         <div className="w-[90%] sm:w-full sm:max-w-[500px] rounded-[20px] bg-gray-50 text-gray-800 text-center dark:bg-dark-2 px-[30px] py-[30px] ">
           <h3 className="text-3xl font-semibold text-gray-800 mb-3">
